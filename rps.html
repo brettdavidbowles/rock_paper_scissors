@@ -6,6 +6,9 @@
       </head>
       <body>
     <script>
+        let computerScore = 0;
+        let playerScore = 0;
+        
         function computerPlay() {
             
             let comp = Math.floor(Math.random()*10);
@@ -22,29 +25,36 @@
         }
         
         function playRound(playerSelection, computerSelection){
-            let pS = playerSelection.toUpperCase();
             
-            if (pS == "ROCK"){
+            let pS = playerSelection.toLowerCase();
+            
+            if (pS == "rock"){
                 if (computerSelection == "paper"){
+                    computerScore++;
                     return "You Lose! Paper beats Rock"
                 } else if (computerSelection == "scissors"){
+                    playerScore++;
                     return "You Win! Rock beats Scissors"
                 } else {
                     return "Tie, try again!"
                 }
-            } else if (pS == "PAPER"){
+            } else if (pS == "paper"){
                 if (computerSelection == "scissors"){
+                    computerScore++;
                     return "You Lose! Scissors beats Paper"
                 } else if (computerSelection == "rock"){
+                    playerScore++;
                     return "You Win! Paper beats Rock"
                 } else {
                     return "Tie, try again!"
                 }
             
-            } else if (pS == "SCISSORS") {
+            } else if (pS == "scissors") {
                 if (computerSelection == "rock"){
+                    computerScore++;
                     return "You Lose! Rock beats Scissors"
                 } else if (computerSelection == "paper"){
+                    playerScore++;
                     return "You Win! Scissors beats Paper"
                 } else {
                     return "Tie, try again!"
@@ -52,10 +62,55 @@
             } else {
                 return `I don't think you understand this game, jackass.`
             }
+            
         };
-        function test(){
-            return "isthisworking?"
+
+        function roundResult (z, y){
+          
+                if (z > y){
+                    console.log("You won the round!");
+                    
+                } else if (y > z) {
+                    console.log("You lost the round!");
+                    
+                } else {
+                    console.log("Wow, tie breaker!");
+                    playRound((prompt ("Tie Breaker! : Rock, Paper, or Scissors?")), computerPlay()) == "Tie, try again!" ? 
+                    console.log(playRound): console.log (roundResult(z,y))
+                    
+
+                }   
         }
+        
+
+        function game(){
+            
+            for(let x = 0; x < 5; x++){
+            let pS = prompt ("Round " + (x+1) + ": Rock, Paper, or Scissors?");
+            let cS = computerPlay();
+            let round = playRound (pS, cS);
+            console.log(round)
+         
+           
+            }
+             
+             
+             
+            console.log(playerScore);
+            console.log(computerScore);
+            console.log (roundResult(playerScore, computerScore))
+            computerScore = computerScore - computerScore
+            playerScore = playerScore - playerScore
+            }
+            
+        
+
+
+        function test(){
+            return ("is this thing on?");
+            
+        }
+
     </script>
       </body>
 
