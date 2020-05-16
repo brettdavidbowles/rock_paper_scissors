@@ -65,22 +65,23 @@
             
         };
 
+       
         function roundResult (z, y){
           
-                if (z > y){
-                    console.log("You won the round!");
-                    
-                } else if (y > z) {
-                    console.log("You lost the round!");
-                    
-                } else {
-                    console.log("Wow, tie breaker!");
-                    playRound((prompt ("Tie Breaker! : Rock, Paper, or Scissors?")), computerPlay()) == "Tie, try again!" ? 
-                    console.log(playRound): console.log (roundResult(z,y))
-                    
-
-                }   
+          if (z > y){
+              console.log("You won the round!");
+              
+          } else if (y > z) {
+              console.log("You lost the round!");
+              
+          } else if (y == z) {
+              console.log("Wow, tie breaker!");
+              console.log(playRound((prompt ("Tie Breaker! : Rock, Paper, or Scissors?")), computerPlay()))
+                console.log (roundResult (playerScore, computerScore))
+               }
+              
         }
+               
         
 
         function game(){
@@ -92,7 +93,12 @@
             console.log(round)
          
            
-            }
+            
+           
+              
+          
+          
+  }
              
              
              
@@ -102,6 +108,7 @@
             computerScore = computerScore - computerScore
             playerScore = playerScore - playerScore
             }
+            
             
         
 
