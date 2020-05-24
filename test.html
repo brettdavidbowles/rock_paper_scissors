@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button id="eventBtn" onclick="myFunction()">X = 0</button>
+<script>
+var x = 0;
+function myFunction() {
+    setInterval(function(){ 
+        x++;
+        var btn = document.getElementById("eventBtn");
+        btn.innerHTML = 'X = ' + x;
+    }, 1000);
+}
+</script>
+</body>
+</html>
