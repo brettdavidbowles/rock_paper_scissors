@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        <meta charset="UTF-8"/>
+      </head>
+      <body>
+          <div id = "buttons">
+              <button id = "rock">Rock</button>
+              <button id = "paper">Paper</button>
+              <button id = "scissors">Scissors</button>
+          </div>
+    <script>
+        let computerScore = 0;
+        let playerScore = 0;
+        
+        function computerPlay() {
+            
+            let comp = Math.floor(Math.random()*10);
+            
+            if (comp < 3){
+                return "rock"
+            } else if (comp < 6){
+                return "paper"
+            } else if (comp < 9){
+                return "scissors"
+            } else {
+                return computerPlay()
+            }
+        }
+        
+        function playRound(playerSelection, computerSelection){
+            
+            let pS = playerSelection.toLowerCase();
+            
+            if (pS == "rock"){
+                if (computerSelection == "paper"){
+                    computerScore++;
+                    announceRound("You Lose! Paper beats Rock")
+                } else if (computerSelection == "scissors"){
+                    playerScore++;
+                    announceRound("You Win! Rock beats Scissors")
+                } else {
+                    announceRound("Tie, try again!")
+                }
+            } else if (pS == "paper"){
+                if (computerSelection == "scissors"){
+                    computerScore++;
+                    announceRound("You Lose! Scissors beats Paper")
+                } else if (computerSelection == "rock"){
+                    playerScore++;
+                    announceRound("You Win! Paper beats Rock")
+                } else {
+                    announceRound("Tie, try again!")
+                }
+            
+            } else if (pS == "scissors") {
+                if (computerSelection == "rock"){
+                    computerScore++;
+                    announceRound("You Lose! Rock beats Scissors")
+                } else if (computerSelection == "paper"){
+                    playerScore++;
+                    announceRound("You Win! Scissors beats Paper")
+                } else {
+                    announceRound("Tie, try again!")
+                }
+            } else {
+                announceRound(`I don't think you understand this game, jackass.`)
+            };
+
+           
+            
+        };
+
+       function reset () {
+        computerScore = computerScore - computerScore
+            playerScore = playerScore - playerScore
+       }
+        function roundResult (z, y){
+          
+          if (z > y){
+              console.log("You won the round!");
+              
+          } else if (y > z) {
+              console.log("You lost the round!");
+              
+          } else if (y == z) {
+              console.log("Wow, tie breaker!");
+              console.log(playRound((prompt ("Tie Breaker! : Rock, Paper, or Scissors?")), computerPlay()))
+                console.log (roundResult (playerScore, computerScore))
+               }
+              
+        }
+               
+        
+
+        function game(){
+            
+            for(let x = 0; x < 5; x++){
+            let pS = prompt ("Round " + (x+1) + ": Rock, Paper, or Scissors?");
+            let cS = computerPlay();
+            let round = playRound (pS, cS);
+            console.log(round)
+         
+           
+            
+           
+              
+          
+          
+  }
+             
+             
+             
+            console.log(playerScore);
+            console.log(computerScore);
+            console.log (roundResult(playerScore, computerScore))
+            computerScore = computerScore - computerScore
+            playerScore = playerScore - playerScore
+            }
+            
+            
+        
+
+
+        function test(){
+            return ("is this thing on?");
+            
+        }
+
+        
+
+const allButtons = document.querySelectorAll('button');
+
+
+
+allButtons.forEach ((button) => {
+    button.addEventListener ('click', (e) => {
+        
+        announceWinner(changeScore(playRound(button.id, computerPlay())));
+
+    });
+})
+
+const buttons = document.querySelector('#buttons');
+
+const eachRound = document.createElement('div');
+eachRound.setAttribute('id', 'eachRound');
+eachRound.textContent = 'Click to Play! Best out of nine wins.';
+
+function announceRound (x) {
+    document.getElementById('eachRound').innerHTML = x
+}
+
+
+const scoreCard = document.createElement('div');
+scoreCard.setAttribute('id', 'scoreCard');
+scoreCard.textContent = `Your Score: ${playerScore}
+                        Computer Score: ${computerScore}`
+
+function changeScore () {
+    document.getElementById("scoreCard").innerHTML = `Your Score: ${playerScore}
+                                                Computer Score: ${computerScore}`
+}
+
+const winner = document.createElement('h1');
+winner.setAttribute('id', 'winner');
+winner.textContent = "";
+
+function announceWinner() {
+    if (playerScore == 5) {
+        document.getElementById("winner").innerHTML = `You win the round!<br>
+                                        To play again choose Rock, Paper, or Scissors`;
+        reset();
+    } else if (computerScore == 5) {
+        document.getElementById("winner").innerHTML = `You lose the round<br>
+                                        To play again choose Rock, Paper, or Scissors`;
+        reset();
+    } else {
+        document.getElementById("winner").innerHTML = "";
+    }
+}
+
+buttons.appendChild(eachRound);
+buttons.appendChild(scoreCard);
+buttons.appendChild(winner);
+
+           
+  
+
+
+    </script>
+      </body>
+
+</html>
